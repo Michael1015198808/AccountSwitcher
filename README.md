@@ -5,6 +5,8 @@ A Chrome extension to switch your logged accounts in some websites. 一个用于
 qwq
 </div>
 
+<button onclick="console.log('qwq')">click me!</button>
+
 <script type="text/javascript">
 var box = document.getElementById("1")
 </script>
