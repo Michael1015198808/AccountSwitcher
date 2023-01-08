@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "账号切换",
+  "version": "0.0.1",
+  "description": "",
+  "homepage_url": "https://github.com/Michael1015198808/AccountSwitcher",
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "permissions": [
+    "storage",
+    "cookies",
+    "tabs"
+  ],
+  "action": {
+    "default_popup": "popup/index.html"
+  }
+}

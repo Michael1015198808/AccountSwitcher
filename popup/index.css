@@ -1,0 +1,54 @@
+/* 
+ * Borrowed from https://github.com/FelisCatus/SwitchyOmega/blob/master/omega-web/src/popup/css/index.css,
+ * commit 9d71c9163459c66903e295eee0d53cb2fff8fe7a.
+ * Original copyright is copied below.
+*/
+/*!
+ * Copyright 2017 The SwitchyOmega Authors. Please see the AUTHORS file
+ * for details.
+ * Based on Bootstrap v3.3.2 (http://getbootstrap.com)
+ * Copyright 2011-2015 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+*/
+
+.status {
+    font-size: larger;
+}
+
+.item-divider {
+    height: 1px;
+    overflow: hidden;
+    background-color: #E5E5E5;
+}
+
+.cookies-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cookies-item {
+    padding: 0px 4px 0px 4px;
+    border-radius: 4px;
+    line-height: 1.5em;
+    font-size: larger;
+    color: #337ab7;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.cookies-item:hover {
+    text-decoration: none;
+    background-color: #eee;
+}
+
+.glyphicon {
+    margin-right: 16px;
+    float: right;
+    color: red;
+    cursor: pointer;
+}
+.glyphicon:hover {
+    text-decoration: none;
+    background-color: #eee;
+}
