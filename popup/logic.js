@@ -107,6 +107,12 @@ chrome.tabs.query({
                 del_button.onclick = () => { cookies_remove(key) };
                 li.appendChild(del_button);
 
+                var update_button = document.createElement("span");
+                update_button.className = "glyphicon";
+                update_button.appendChild(document.createTextNode("update"));
+                update_button.onclick = () => { cookies_get(key); };
+                li.appendChild(update_button);
+
                 list.appendChild(li);
             }
         })
