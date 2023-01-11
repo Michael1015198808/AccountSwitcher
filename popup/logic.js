@@ -17,11 +17,12 @@ chrome.tabs.query({
         }
         function cookies_get(n) {
             chrome.cookies.getAll({ domain: domain_url }, (cookies) => {
-                var l = [];
-                for (const cookie of cookies) {
-                    l.push(cookie)
-                }
-                chrome.storage.local.set({ [n]: l }).then(() => {
+                chrome.storage.local.set({
+                    [n]: {
+                        domain: domain_url,
+                        cookies: cookies
+                    }
+                }).then(() => {
                     console.log("set", n, "to", l);
                 });
             });
@@ -31,7 +32,8 @@ chrome.tabs.query({
         function cookies_set(n) {
             chrome.storage.local.get([n]).then((result) => {
                 total = 0;
-                for (const cookie of result[n]) {
+                cookies = result[n].cookies || result[n]; // Since older versions store the cookies directly, this check is for backward compatibility
+                for (const cookie of cookies) {
                     let url =
                         (cookie.secure ? "https://" : "http://") +
                         (cookie.domain.startsWith(".")
@@ -85,13 +87,17 @@ chrome.tabs.query({
         }
         var list = document.getElementById("cookies-list");
         chrome.storage.local.get(null, (items) => {
-            for (const key in items) {
+            Object.entries(items).filter((obj) => {
+                // Since older versions store the cookies directly without field `domain`, this check is for backward compatibility
+                return obj[1].domain == undefined || obj[1].domain == domain_url;
+            }).map((obj) => {
+                const key = obj[0];
                 var divider = document.createElement("li");
                 divider.className = "item-divider";
                 list.append(divider);
                 var li = document.createElement("li");
 
-                var  a = document.createElement("span");
+                var a = document.createElement("span");
                 a.className = "cookies-item";
                 a.appendChild(document.createTextNode(key));
                 a.onclick = () => {
@@ -114,6 +120,9 @@ chrome.tabs.query({
                 li.appendChild(update_button);
 
                 list.appendChild(li);
+            })
+            if (list.children.length == 0) {
+                list.appendChild(document.createTextNode("当前域名无已保存的 Cookies"))
             }
         })
         var input = document.getElementById("input");
